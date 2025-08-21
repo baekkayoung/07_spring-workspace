@@ -45,7 +45,7 @@
     
    	<!-- 
         SqlSessionTemplate sqlSession = new SqlSessionTemplate(sqlSessionFactoryBean);
-    -->
+    --> 
     
     <!--
     	property : setter 주입(setter를 호출한다)
