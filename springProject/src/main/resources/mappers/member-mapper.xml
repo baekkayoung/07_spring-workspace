@@ -16,8 +16,9 @@
 	<result column="status" property="status"/>
 </resultMap>
 
+ 
 <select id="loginMember" resultMap="memberResultSet">
-
+<!-- 암호화 작업 전에 했던 방식
 select
 		user_id
 		, user_pwd
@@ -34,6 +35,73 @@ select
 	 where status='Y'
 	 and user_id = #{userId}
 	 and user_pwd = #{userPwd}
-</select>
+
+-->
+select
+		user_id
+		, user_pwd
+		, user_name
+		, email
+		, gender
+		, age
+		, phone
+		, address
+		, enroll_date
+		, modify_date
+		, status
+	 from member
+	 where status='Y'
+	 and user_id = #{userId}
+
+</select> 
+ 
+<insert id="insertMember">
+
+insert into member
+(
+    user_id
+    ,user_pwd
+    ,user_name
+    ,email
+    ,gender
+    ,age
+    ,phone
+    ,address
+)
+values
+(
+	#{userId}
+	, #{userPwd}
+	, #{userName}
+	, #{email}
+	, #{gender}
+	, #{age}
+	, #{phone}
+	, #{address}
+)
+</insert>
+
+<update id="updateMemer">
+
+update member
+    set email = #{email}
+    , gender = #{gender}
+    , age = #{age}
+    , phone = #{phone}
+    , address = #{address}
+    , modify_date = sysdate
+    where user_id = #{userId}
+    
+
+</update>
+
+<update id="deleteMember">
+
+update member
+set status = 'N'
+where user_id = #{userId}
+
+</update>
+
 
 </mapper>

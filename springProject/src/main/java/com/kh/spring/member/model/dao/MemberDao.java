@@ -1,5 +1,7 @@
 package com.kh.spring.member.model.dao;
 
+import javax.websocket.Session;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.stereotype.Repository;
 
@@ -13,5 +15,23 @@ public class MemberDao {
 		return sqlSession.selectOne("memberMapper.loginMember" , m);
 		
 	}
+
+	
+	public int insertMember(SqlSessionTemplate sqlSession, Member m) {
+		return sqlSession.insert("memberMapper.insertMember", m);
+	}
+
+	
+	
+	public int updateMemer(SqlSessionTemplate sqlSession, Member m) {
+		return sqlSession.insert("memberMapper.updateMemer", m);
+	}
+
+
+	public int deleteMember(SqlSessionTemplate sqlSession, String userId) {
+		return sqlSession.update("memberMapper.deleteMember", userId);
+	}
+
+	
 
 }
