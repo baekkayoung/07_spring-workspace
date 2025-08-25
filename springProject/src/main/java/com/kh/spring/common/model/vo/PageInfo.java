@@ -3,7 +3,7 @@ package com.kh.spring.common.model.vo;
 public class PageInfo {
 	
 	private int listCount;
-	private int cuurentPage;
+	private int currentPage;
 	private int pageLimit;
 	private int boardLimit;
 	
@@ -13,11 +13,11 @@ public class PageInfo {
 	
 	public PageInfo() {}
 	
-	public PageInfo(int listCount, int cuurentPage, int pageLimit, int boardLimit, int maxPage, int startPage,
+	public PageInfo(int listCount, int currentPage, int pageLimit, int boardLimit, int maxPage, int startPage,
 			int endPage) {
 		super();
 		this.listCount = listCount;
-		this.cuurentPage = cuurentPage;
+		this.currentPage = currentPage;
 		this.pageLimit = pageLimit;
 		this.boardLimit = boardLimit;
 		this.maxPage = maxPage;
@@ -33,19 +33,19 @@ public class PageInfo {
 		this.listCount = listCount;
 	}
 
-	public int getCuurentPage() {
-		return cuurentPage;
+	public int getCurrentPage() {
+		return currentPage;
 	}
 
-	public void setCuurentPage(int cuurentPage) {
-		this.cuurentPage = cuurentPage;
+	public void setCurrentPage(int currentPage) {
+		this.currentPage = currentPage;
 	}
 
-	public int getLimitPage() {
+	public int getPageLimit() {
 		return pageLimit;
 	}
 
-	public void setLimitPage(int pageLimit) {
+	public void setPageLimit(int pageLimit) {
 		this.pageLimit = pageLimit;
 	}
 
@@ -83,10 +83,12 @@ public class PageInfo {
 
 	@Override
 	public String toString() {
-		return "PageInfo [listCount=" + listCount + ", cuurentPage=" + cuurentPage + ", limitPage=" + pageLimit
+		return "PageInfo [listCount=" + listCount + ", currentPage=" + currentPage + ", pageLimit=" + pageLimit
 				+ ", boardLimit=" + boardLimit + ", maxPage=" + maxPage + ", startPage=" + startPage + ", endPage="
 				+ endPage + "]";
 	}
+
+	
 	
 	
 	
