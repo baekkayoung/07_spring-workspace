@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -299,5 +300,19 @@ public class MemberController {
 		        return "common/errorPage";
 		    }
 	}
-
+	
+	@ResponseBody // 응답뷰를 찾게돼서 이상해짐. 내가 보내는 데이터는 응답뷰가 아니라 글자 자체의 데이터다 !!
+	@RequestMapping("idCheck.me")
+	public String idCheck(String checkId) {
+		int count = mService.idCheck(checkId);
+		
+		/* 3항 연산자로 하면 더 가능
+		if( count > 0 ) { // 이미 존재하는 아이디 => 사용 불가능(NNNNN)
+			return "NNNNN";
+		}else { // 사용 가능(NNNNY)
+			return "NNNNY";
+		}
+		*/
+		return count > 0 ? "NNNNN" : "NNNNY";
+	}
 }
