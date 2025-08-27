@@ -13,6 +13,14 @@
 		<result column="change_name" property="changeName"/>
 	
 	</resultMap>
+	
+	<resultMap type="Reply" id="ReplyResultSet">
+		<result column="reply_no" property="replyNo"/>
+		<result column="reply_content" property="replyContent"/>
+		<result column="reply_writer" property="replyWriter"/>
+		<result column="create_date" property="createDate"/>
+
+	</resultMap>
 
 	<select id="selectListCount" resultType="_int">
 		select count(*)
@@ -101,5 +109,57 @@
 			where board_no = #{boardNo}
 	
 	</update>
+	
+	
+	<select id="selectReplyList" resultMap="ReplyResultSet">
+		select 
+		    reply_no
+		    , reply_content
+		    , reply_writer
+		    , to_char(create_date, 'YYYY-MM-DD') as "create_date"
+	    from reply
+	    where status = 'Y'
+	    and ref_bno = #{boardNo}
+	    order by reply_no desc
+	</select>
+	
+	<insert id="insertReply">
+		insert into reply
+			(
+			 reply_no
+			, reply_content
+			, ref_bno
+			, reply_writer
+			)
+			values
+			(
+			 seq_rno.nextval
+			 ,#{replyContent}
+			 ,#{refBoardNo}
+			 ,#{replyWriter}
+			)
+	</insert>
+	
+	
+	<select id="selectTopBoardlList" resultMap="boardResultSet">
+	select * 
+	from(
+	select 
+	    board_no
+	  , board_title      
+	  , board_writer
+	  , origin_name
+	  , count
+	  , to_char(create_date, 'YYYY-MM-DD') as create_date
+	from board
+	where status = 'Y'
+	
+	order by count desc
+	)
+	where rownum between 1 and 5
+	
+	</select>
+	
+
 	
 </mapper>

@@ -26,10 +26,13 @@ public interface BoardService {
     int updateBoard(Board b);
     
     // 6. 댓글 리스트 조회(ajax)
-    ArrayList<Reply> selectReplyList();
+    ArrayList<Reply> selectReplyList(int boardNo);
     
     // 7. 댓글 작성
     int insertReply(Reply r);
+    
+    // 8. 저회수 top5 리스트 조회용 서비스
+    ArrayList<Board> selectTopBoardList();
      
     
 }
